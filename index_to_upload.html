@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<!-- Sicherheits-Meta-Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://cdn.emailjs.com; connect-src 'self' https://api.emailjs.com;">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+<meta name="referrer" content="no-referrer">
+<title>Selbstständiger Energieberater / Vertriebspartner | HomePlus</title>
+    <!-- Import Montserrat font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --base: #FFFFFF;
+            --contrast: #464646;
+            --accent-1: #A0E628; /* lime green */
+            --accent-2: #321EE6; /* purple */
+            --accent-3: #fa9600; /* orange */
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--contrast);
+            background-color: var(--base);
+            line-height: 1.6;
+        }
+        /* Site Header */
+        .site-header {
+            background-color: var(--base);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-bottom: 4px solid var(--accent-1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .site-header .logo {
+            height: 50px;
+        }
+        .site-header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .site-header nav ul li a {
+            text-decoration: none;
+            color: var(--contrast);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .site-header nav ul li a:hover {
+            color: var(--accent-2);
+        }
+        .site-header .cta-button {
+            padding: 10px 20px;
+            background-color: var(--accent-2);
+            color: #fff;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .site-header .cta-button:hover {
+            background-color: var(--accent-3);
+        }
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            /* Use the new header image provided by the user and overlay a purple gradient for contrast */
+            background-image: linear-gradient(to right, rgba(50,30,230,0.7), rgba(50,30,230,0.7)), url('HP_Titelbild.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            color: #fff;
+        }
+        .hero-inner {
+            max-width: 600px;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        .hero h1 span.dot {
+            color: var(--accent-1);
+        }
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-2);
+            background-color: var(--accent-1);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--accent-3);
+            color: #fff;
+        }
+        section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        section h2 {
+            font-size: 2.5rem;
+            color: var(--accent-2);
+            margin-bottom: 1.5rem;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .feature {
+            flex: 1 1 300px;
+            background-color: #f7f7ff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-2);
+        }
+        .feature p {
+            font-size: 1rem;
+            color: var(--contrast);
+        }
+        ul.benefits-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        ul.benefits-list li {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        ul.benefits-list li::before {
+            content: '✓';
+            margin-right: 12px;
+            color: var(--accent-1);
+            font-weight: bold;
+        }
+        /* Contact Section */
+        #contact {
+            background-color: var(--accent-2);
+            color: #fff;
+            border-radius: 12px;
+            padding: 60px 30px;
+        }
+        #contact h2 {
+            color: var(--accent-1);
+        }
+        /* Additional styling for custom contact form headings and radio groups */
+        form h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-1);
+            font-weight: 600;
+        }
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .radio-group label {
+            font-weight: 400;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+        form label {
+            font-weight: 600;
+        }
+        form input,
+        form textarea {
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid var(--accent-1);
+            border-radius: 6px;
+            outline: none;
+        }
+        form input:focus,
+        form textarea:focus {
+            border-color: var(--accent-3);
+        }
+        form button {
+            align-self: flex-start;
+            padding: 14px 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-2);
+            background-color: var(--accent-1);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        form button:hover {
+            background-color: var(--accent-3);
+            color: #fff;
+        }
+        /* Jotform wrapper for embedded questionnaire */
+        .jotform-wrapper {
+            margin-top: 1.5rem;
+        }
+        footer {
+            background-color: var(--contrast);
+            color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        footer p {
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            section h2 {
+                font-size: 2rem;
+            }
+            .site-header nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <!-- Use the new HomePlus logo provided by the user -->
+        <img src="HP_Logo.png" alt="HomePlus Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+                <!-- Link to the legal imprint section -->
+                <li><a href="#impressum">Impressum</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <h1>Dein Zuhause<span class="dot">.</span><br>Deine Energie<span class="dot">.</span></h1>
+            <p>Starte als selbstständiger Energieberater und gestalte die Energiewende aktiv mit. Hohe Provisionen, qualifizierte Leads und flexible Arbeitszeiten warten auf dich.</p>
+            <a href="#kontakt" class="btn-primary">Jetzt Vertriebspartner werden</a>
+        </div>
+    </section>
+
+    <section>
+        <h2>Warum HomePlus?</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>Überdurchschnittliche Provisionen</h3>
+                <p>Bei jedem Abschluss sicherst du dir zwischen 2.500 € und 10.000 €. Dein Erfolg ist unser Erfolg.</p>
+            </div>
+            <div class="feature">
+                <h3>Kostenfreie Leads</h3>
+                <p>Wir stellen dir pro Woche bis zu 15 vorqualifizierte Kundenkontakte zur Verfügung – du konzentrierst dich auf den Verkauf.</p>
+            </div>
+            <div class="feature">
+                <h3>Flexible Arbeitszeiten</h3>
+                <p>Plane deinen Alltag nach deinen Bedürfnissen. Als selbstständiger Partner bei HomePlus bist du dein eigener Chef.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Vorteile auf einen Blick</h2>
+        <ul class="benefits-list">
+            <li>Modernes, nachhaltiges Produktsortiment aus Photovoltaik und Wärmepumpen</li>
+            <li>Umfassende Unterstützung durch unser erfahrenes Backoffice</li>
+            <li>Schnelle und reibungslose Projektabwicklung</li>
+            <li>Persönliche Schulungen sowie digitales Vertriebsmaterial</li>
+            <li>Steigender Markt mit enormem Wachstumspotenzial</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Dein Aufgabengebiet</h2>
+        <ul class="benefits-list">
+            <li>Berate Hausbesitzer zu Photovoltaik- und Wärmepumpen-Lösungen</li>
+            <li>Analysiere Energie- und Einsparpotenziale deiner Kunden</li>
+            <li>Erstelle individuelle Angebote und Präsentationen</li>
+            <li>Begleite Kunden vom Erstgespräch bis zum Vertragsabschluss</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Was du mitbringen solltest</h2>
+        <ul class="benefits-list">
+            <li>Motivation und Leidenschaft für Vertrieb und erneuerbare Energien</li>
+            <li>Kommunikationsstärke und Überzeugungskraft</li>
+            <li>Unternehmerisches Denken und eigenständiges Arbeiten</li>
+            <li>Erfahrung im Vertrieb ist von Vorteil, aber kein Muss – Quereinsteiger willkommen</li>
+        </ul>
+    </section>
+
+    <section id="kontakt">
+        <div id="contact">
+            <h2>Jetzt starten!</h2>
+            <p>Interessiert? Fülle das Formular aus und wir melden uns bei dir, um alle Details zu besprechen.</p>
+            <!--
+                Das nachfolgende Formular ersetzt das ursprüngliche eingebettete Jotform.
+                Es enthält die wesentlichen Vorqualifizierungsfragen, eine Selbsteinschätzung
+                sowie Felder für die Kontaktaufnahme. Die in der Benutzeranfrage unerwünschten
+                Elemente (Knock‑out‑Überschrift, Gesamtpunktzahl und Interviewdaten) wurden entfernt.
+            -->
+        <!-- The form no longer posts to an external action; submission is handled via EmailJS in JavaScript -->
+        <form id="contact-form" onsubmit="return false;">
+                <!-- Hidden fields for formsubmit.co configuration -->
+                                                <h3>Vorqualifizierungsfragen</h3>
+                <label>Haben Sie eine gültige Aufenthaltserlaubnis in Deutschland?
+                    <div class="radio-group">
+                        <label><input type="radio" name="aufenthalt" value="Ja" required> Ja</label>
+                        <label><input type="radio" name="aufenthalt" value="Nein"> Nein</label>
+                    </div>
+                </label>
+                <label>Haben Sie Erfahrung im Vertrieb oder Außendienst?
+                    <div class="radio-group">
+                        <label><input type="radio" name="vertriebserfahrung" value="Ja" required> Ja</label>
+                        <label><input type="radio" name="vertriebserfahrung" value="Nein"> Nein</label>
+                    </div>
+                </label>
+                <label>Besitzen Sie einen Führerschein und ein eigenes Fahrzeug?
+                    <div class="radio-group">
+                        <label><input type="radio" name="fahrzeug" value="Ja" required> Ja</label>
+                        <label><input type="radio" name="fahrzeug" value="Nein"> Nein</label>
+                    </div>
+                </label>
+                <label>Können Sie mindestens 3–5 Tage pro Woche arbeiten?
+                    <div class="radio-group">
+                        <label><input type="radio" name="arbeitszeit" value="Ja" required> Ja</label>
+                        <label><input type="radio" name="arbeitszeit" value="Nein"> Nein</label>
+                    </div>
+                </label>
+
+                <h3>Selbsteinschätzung</h3>
+                <label>Wie hoch schätzen Sie Ihre Vertriebsstärke ein? (1 = gering, 10 = sehr hoch)
+                    <input type="range" name="vertriebsstaerke" min="1" max="10" step="1" required>
+                </label>
+                <label>Wie wichtig ist Ihnen der Aufbau von passivem Einkommen? (1 = unwichtig, 10 = sehr wichtig)
+                    <input type="range" name="passives_einkommen" min="1" max="10" step="1" required>
+                </label>
+                <label>Wie gut sind Ihre organisatorischen Fähigkeiten? (1 = gering, 10 = sehr gut)
+                    <input type="range" name="organisation" min="1" max="10" step="1" required>
+                </label>
+                <label>Wie motiviert sind Sie, im Energievertrieb erfolgreich zu sein? (1 = wenig, 10 = sehr motiviert)
+                    <input type="range" name="motivation" min="1" max="10" step="1" required>
+                </label>
+
+                <h3>Kontaktinformationen</h3>
+                <label>Vorname
+                    <input type="text" name="vorname" required>
+                </label>
+                <label>Nachname
+                    <input type="text" name="nachname" required>
+                </label>
+                <label>E‑Mail
+                    <input type="email" name="email" required>
+                </label>
+                <label>Telefonnummer
+                    <input type="tel" name="telefon" required>
+                </label>
+                <label>Postleitzahl
+                    <input type="text" name="plz">
+                </label>
+                <label>Nachricht (optional)
+                    <textarea name="nachricht" rows="4" placeholder="Deine Nachricht..."></textarea>
+                </label>
+                <!-- Datenschutz-Zustimmung; der Benutzer muss die Datenschutzerklärung akzeptieren bevor er das Formular absenden kann -->
+                <label style="display:flex; align-items:flex-start; gap:8px; font-weight:400;">
+                    <input type="checkbox" name="datenschutz" required style="margin-top:4px;">
+                    <span>Ich habe die <a href="https://homeplus.de/datenschutzerklaerung-2/" target="_blank" style="color: var(--accent-1); text-decoration: underline;">Datenschutzbestimmungen</a> gelesen und akzeptiere sie.</span>
+                </label>
+                <button type="submit">Absenden</button>
+            </form>
+            <p id="form-success" style="display:none; margin-top:1rem; font-weight:600;">
+                Vielen Dank! Deine Nachricht wurde übermittelt. Wir melden uns zeitnah bei dir.
+            </p>
+            
+            <!-- Include the EmailJS SDK and configure form submission -->
+            <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+            <script>
+                // Initialisiere EmailJS mit deinem öffentlichen Schlüssel
+                (function() {
+                    emailjs.init('-Kk-7NgED4ZzQ0sJt');
+                })();
+
+                // Sende das Formular über EmailJS. Wird automatisch die Felder an die Vorlage senden.
+                document.getElementById('contact-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const form = this;
+                    emailjs.sendForm('service_dvaicib', 'template_ldfaqg1', form)
+                        .then(function() {
+                            // Erfolg: Meldung anzeigen und Formular zurücksetzen
+                            document.getElementById('form-success').style.display = 'block';
+                            form.reset();
+                        }, function(error) {
+                            // Fehler: Benutzer informieren
+                            alert('Fehler beim Senden des Formulars.');
+                        });
+                });
+            </script>
+        </div>
+    </section>
+
+    <!-- Rechtliche Pflichtangaben gemäß Impressumspflicht -->
+    <section id="impressum">
+        <h2>Impressum</h2>
+        <p>
+            <strong>HomePlus GmbH</strong><br>
+            Büro &amp; Lager: Zum Eisenhammer&nbsp;19, 46049&nbsp;Oberhausen<br>
+            Tel: 02161&nbsp;9909670<br>
+            Mail: info@homeplus.de<br>
+            Geschäftsführer: Jonas&nbsp;Bönte<br>
+            Umsatzsteuer-ID: DE364429541<br>
+            Handelsregisternummer: HRB&nbsp;21819
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 HomePlus. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>
