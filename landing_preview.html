@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selbstständiger Energieberater / Vertriebspartner | HomePlus</title>
+    <!-- Import Montserrat font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --base: #FFFFFF;
+            --contrast: #464646;
+            --accent-1: #A0E628; /* lime green */
+            --accent-2: #321EE6; /* purple */
+            --accent-3: #fa9600; /* orange */
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--contrast);
+            background-color: var(--base);
+            line-height: 1.6;
+        }
+        /* Site Header */
+        .site-header {
+            background-color: var(--base);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-bottom: 4px solid var(--accent-1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .site-header .logo {
+            height: 50px;
+        }
+        .site-header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .site-header nav ul li a {
+            text-decoration: none;
+            color: var(--contrast);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .site-header nav ul li a:hover {
+            color: var(--accent-2);
+        }
+        .site-header .cta-button {
+            padding: 10px 20px;
+            background-color: var(--accent-2);
+            color: #fff;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .site-header .cta-button:hover {
+            background-color: var(--accent-3);
+        }
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            /* Use the new header image provided by the user and overlay a purple gradient for contrast */
+            background-image: linear-gradient(to right, rgba(50,30,230,0.7), rgba(50,30,230,0.7)), url('HP_Titelbild.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            color: #fff;
+        }
+        .hero-inner {
+            max-width: 600px;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        .hero h1 span.dot {
+            color: var(--accent-1);
+        }
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-2);
+            background-color: var(--accent-1);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--accent-3);
+            color: #fff;
+        }
+        section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        section h2 {
+            font-size: 2.5rem;
+            color: var(--accent-2);
+            margin-bottom: 1.5rem;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .feature {
+            flex: 1 1 300px;
+            background-color: #f7f7ff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-2);
+        }
+        .feature p {
+            font-size: 1rem;
+            color: var(--contrast);
+        }
+        ul.benefits-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        ul.benefits-list li {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        ul.benefits-list li::before {
+            content: '\2713';
+            margin-right: 12px;
+            color: var(--accent-1);
+            font-weight: bold;
+        }
+        /* Contact Section */
+        #contact {
+            background-color: var(--accent-2);
+            color: #fff;
+            border-radius: 12px;
+            padding: 60px 30px;
+        }
+        #contact h2 {
+            color: var(--accent-1);
+        }
+        /* Additional styling for custom contact form headings and radio groups */
+        form h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-1);
+            font-weight: 600;
+        }
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .radio-group label {
+            font-weight: 400;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+        form label {
+            font-weight: 600;
+        }
+        form input,
+        form textarea {
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid var(--accent-1);
+            border-radius: 6px;
+            outline: none;
+        }
+        form input:focus,
+        form textarea:focus {
+            border-color: var(--accent-3);
+        }
+        form button {
+            align-self: flex-start;
+            padding: 14px 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-2);
+            background-color: var(--accent-1);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        form button:hover {
+            background-color: var(--accent-3);
+            color: #fff;
+        }
+        /* Jotform wrapper for embedded questionnaire */
+        .jotform-wrapper {
+            margin-top: 1.5rem;
+        }
+        footer {
+            background-color: var(--contrast);
+            color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        footer p {
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            section h2 {
+                font-size: 2rem;
+            }
+            .site-header nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <!-- Use the new HomePlus logo provided by the user -->
+        <img src="data:image/png;base64,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" alt="HomePlus Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <h1>Dein Zuhause<span class="dot">.</span><br>Deine Energie<span class="dot">.</span></h1>
+            <p>Starte als selbstständiger Energieberater und gestalte die Energiewende aktiv mit. Hohe Provisionen, qualifizierte Leads und flexible Arbeitszeiten warten auf dich.</p>
+            <a href="#kontakt" class="btn-primary">Jetzt Vertriebspartner werden</a>
+        </div>
+    </section>
+
+    <section>
+        <h2>Warum HomePlus?</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>Überdurchschnittliche Provisionen</h3>
+                <p>Bei jedem Abschluss sicherst du dir zwischen 2.500 € und 10.000 €. Dein Erfolg ist unser Erfolg.</p>
+            </div>
+            <div class="feature">
+                <h3>Kostenfreie Leads</h3>
+                <p>Wir stellen dir pro Woche bis zu 15 vorqualifizierte Kundenkontakte zur Verfügung – du konzentrierst dich auf den Verkauf.</p>
+            </div>
+            <div class="feature">
+                <h3>Flexible Arbeitszeiten</h3>
+                <p>Plane deinen Alltag nach deinen Bedürfnissen. Als selbstständiger Partner bei HomePlus bist du dein eigener Chef.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Vorteile auf einen Blick</h2>
+        <ul class="benefits-list">
+            <li>Modernes, nachhaltiges Produktsortiment aus Photovoltaik und Wärmepumpen</li>
+            <li>Umfassende Unterstützung durch unser erfahrenes Backoffice</li>
+            <li>Schnelle und reibungslose Projektabwicklung</li>
+            <li>Persönliche Schulungen sowie digitales Vertriebsmaterial</li>
+            <li>Steigender Markt mit enormem Wachstumspotenzial</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Dein Aufgabengebiet</h2>
+        <ul class="benefits-list">
+            <li>Berate Hausbesitzer zu Photovoltaik- und Wärmepumpen-Lösungen</li>
+            <li>Analysiere Energie- und Einsparpotenziale deiner Kunden</li>
+            <li>Erstelle individuelle Angebote und Präsentationen</li>
+            <li>Begleite Kunden vom Erstgespräch bis zum Vertragsabschluss</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Was du mitbringen solltest</h2>
+        <ul class="benefits-list">
+            <li>Motivation und Leidenschaft für Vertrieb und erneuerbare Energien</li>
+            <li>Kommunikationsstärke und Überzeugungskraft</li>
+            <li>Unternehmerisches Denken und eigenständiges Arbeiten</li>
+            <li>Erfahrung im Vertrieb ist von Vorteil, aber kein Muss – Quereinsteiger willkommen</li>
+        </ul>
+    </section>
+
+    <section id="kontakt">
+        <div id="contact">
+            <h2>Jetzt starten!</h2>
+            <p>Interessiert? Fülle das Formular aus und wir melden uns bei dir, um alle Details zu besprechen.</p>
+            <!--
+                Das nachfolgende Formular ersetzt das ursprüngliche eingebettete Jotform.
+                Es enthält die wesentlichen Vorqualifizierungsfragen, eine Selbsteinschätzung
+                sowie Felder für die Kontaktaufnahme. Die in der Benutzeranfrage unerwünschten
+                Elemente (Knock‑out‑Überschrift, Gesamtpunktzahl und Interviewdaten) wurden entfernt.
+            -->
+            <form id="contact-form">
+                <h3>Vorqualifizierungsfragen</h3>
+                <label>Haben Sie eine gültige Aufenthaltserlaubnis in Deutschland?
+                    <div class="radio-group">
+                        <label><input type="radio" name="aufenthalt" value="Ja" required> Ja</label>
+                        <label><input type="radio" name="aufenthalt" value="Nein"> Nein</label>
+                    </div>
+                </label>
+                <label>Haben Sie Erfahrung im Vertrieb oder Außendienst?
+                    <div class="radio-group">
+                        <label><input type="radio" name="vertriebserfahrung" value="Ja" required> Ja</label>
+                        <label><input type="radio" name="vertriebserfahrung" value="Nein"> Nein</label>
+                    </div>
+                </label>
+                <label>Besitzen Sie einen Führerschein und ein eigenes Fahrzeug?
+                    <div class="radio-group">
+                        <label><input type="radio" name="fahrzeug" value="Ja" required> Ja</label>
+                        <label><input type="radio" name="fahrzeug" value="Nein"> Nein</label>
+                    </div>
+                </label>
+                <label>Können Sie mindestens 3–5 Tage pro Woche arbeiten?
+                    <div class="radio-group">
+                        <label><input type="radio" name="arbeitszeit" value="Ja" required> Ja</label>
+                        <label><input type="radio" name="arbeitszeit" value="Nein"> Nein</label>
+                    </div>
+                </label>
+
+                <h3>Selbsteinschätzung</h3>
+                <label>Wie hoch schätzen Sie Ihre Vertriebsstärke ein? (1 = gering, 10 = sehr hoch)
+                    <input type="range" name="vertriebsstaerke" min="1" max="10" step="1" required>
+                </label>
+                <label>Wie wichtig ist Ihnen der Aufbau von passivem Einkommen? (1 = unwichtig, 10 = sehr wichtig)
+                    <input type="range" name="passives_einkommen" min="1" max="10" step="1" required>
+                </label>
+                <label>Wie gut sind Ihre organisatorischen Fähigkeiten? (1 = gering, 10 = sehr gut)
+                    <input type="range" name="organisation" min="1" max="10" step="1" required>
+                </label>
+                <label>Wie motiviert sind Sie, im Energievertrieb erfolgreich zu sein? (1 = wenig, 10 = sehr motiviert)
+                    <input type="range" name="motivation" min="1" max="10" step="1" required>
+                </label>
+
+                <h3>Kontaktinformationen</h3>
+                <label>Vorname
+                    <input type="text" name="vorname" required>
+                </label>
+                <label>Nachname
+                    <input type="text" name="nachname" required>
+                </label>
+                <label>E‑Mail
+                    <input type="email" name="email" required>
+                </label>
+                <label>Telefonnummer
+                    <input type="tel" name="telefon" required>
+                </label>
+                <label>Postleitzahl
+                    <input type="text" name="plz">
+                </label>
+                <label>Nachricht (optional)
+                    <textarea name="nachricht" rows="4" placeholder="Deine Nachricht..."></textarea>
+                </label>
+                <button type="submit">Absenden</button>
+            </form>
+            <p id="form-success" style="display:none; margin-top:1rem; font-weight:600;">
+                Vielen Dank! Deine Nachricht wurde übermittelt. Wir melden uns zeitnah bei dir.
+            </p>
+            <script>
+                document.getElementById('contact-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    document.getElementById('form-success').style.display = 'block';
+                    this.reset();
+                });
+            </script>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 HomePlus. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>
